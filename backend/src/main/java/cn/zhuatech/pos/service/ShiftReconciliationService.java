@@ -9,8 +9,14 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class ShiftReconciliationService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result reconcile(Request request) {
         BigDecimal expectedDrawer = request.systemCash().add(request.openingFloat()).subtract(request.refundAmount());
         BigDecimal variance = request.countedCash().subtract(expectedDrawer);
@@ -25,12 +31,18 @@ public class ShiftReconciliationService {
             request.electronicPayments(), variance, status, !"BALANCED".equals(status), actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String registerNo,
                           @DecimalMin("0") BigDecimal systemCash,
                           @DecimalMin("0") BigDecimal countedCash,
                           @DecimalMin("0") BigDecimal electronicPayments,
                           @DecimalMin("0") BigDecimal refundAmount,
                           @DecimalMin("0") BigDecimal openingFloat) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String registerNo, BigDecimal expectedDrawer, BigDecimal countedCash,
                          BigDecimal electronicPayments, BigDecimal variance, String status,
                          boolean managerReview, List<String> actions) {}

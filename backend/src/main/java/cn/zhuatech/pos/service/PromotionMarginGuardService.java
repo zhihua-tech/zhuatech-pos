@@ -12,8 +12,14 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class PromotionMarginGuardService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result evaluate(Request request) {
         BigDecimal netUnitRevenue = request.listPrice()
             .multiply(BigDecimal.ONE.subtract(request.discountRate()))
@@ -35,12 +41,18 @@ public class PromotionMarginGuardService {
             campaignMargin, decision, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String sku, @DecimalMin("0.01") BigDecimal listPrice,
                           @DecimalMin("0") BigDecimal unitCost,
                           @DecimalMin("0") @DecimalMax("1") BigDecimal discountRate,
                           @DecimalMin("0") BigDecimal loyaltyPointCost,
                           @Min(1) int quantity) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String sku, BigDecimal netUnitRevenue, BigDecimal unitMargin,
                          BigDecimal marginRate, BigDecimal campaignMargin,
                          String decision, List<String> actions) {}

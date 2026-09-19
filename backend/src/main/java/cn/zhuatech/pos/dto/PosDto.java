@@ -6,24 +6,57 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 public final class PosDto {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private PosDto() {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record DashboardSummary(BigDecimal todaySales, int todayOrders, BigDecimal averageTicket,
                                    int activeStores, int activeRegisters, long refundOrders, int newMembers) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record HourlySales(String hour, BigDecimal sales, int orders) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record CategorySales(String category, BigDecimal amount, int ratio) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record OperationAlert(String level, String title, String detail, String owner) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record DashboardView(DashboardSummary summary, List<HourlySales> hourly,
                                 List<CategorySales> categories, List<OperationAlert> alerts) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record CheckoutLine(@NotBlank(message = "商品 SKU 不能为空") String sku,
                                @Min(value = 1, message = "商品数量至少为 1") int quantity) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record CheckoutRequest(@NotBlank(message = "请选择门店") String storeName,
                                   @NotBlank(message = "收银机号不能为空") String registerNo,
                                   String memberMobile,
                                   @NotBlank(message = "请选择支付方式") String paymentMethod,
                                   @NotEmpty(message = "购物车不能为空") List<@Valid CheckoutLine> items,
                                   @DecimalMin(value = "0.00", message = "优惠金额不能小于 0") BigDecimal discount) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record CheckoutLineResult(String sku, String productName, BigDecimal unitPrice, int quantity, BigDecimal lineAmount) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record CheckoutResult(String orderNo, BigDecimal subtotal, BigDecimal discount, BigDecimal payable,
                                  String paymentMethod, String memberName, List<CheckoutLineResult> items) {}
 }

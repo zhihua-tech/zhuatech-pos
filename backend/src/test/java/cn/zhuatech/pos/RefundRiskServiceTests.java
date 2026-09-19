@@ -6,9 +6,15 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class RefundRiskServiceTests {
     private final RefundRiskService service = new RefundRiskService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void flagsAbnormalRefundShift() {
         var result = service.assess(new RefundRiskService.Request("S001", "SHIFT-08", 100, 16,
             new BigDecimal("18000"), new BigDecimal("90000"), 6, 9));
@@ -16,6 +22,9 @@ class RefundRiskServiceTests {
         assertThat(result.reasons()).hasSizeGreaterThanOrEqualTo(3);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void passesNormalShift() {
         var result = service.assess(new RefundRiskService.Request("S001", "SHIFT-09", 200, 2,
             new BigDecimal("300"), new BigDecimal("80000"), 0, 1));

@@ -2,8 +2,14 @@
 package cn.zhuatech.pos.service;
 import jakarta.validation.constraints.*;import org.springframework.stereotype.Service;
 import java.math.BigDecimal;import java.util.*;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class RefundVoidGovernanceService{
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  public Assessment assess(Request r){
   List<String> blockers=new ArrayList<>();List<String> actions=new ArrayList<>();
   if(!r.originalTransactionVerified())blockers.add("原交易不存在或不可退款");
@@ -24,12 +30,24 @@ public class RefundVoidGovernanceService{
   String route=risk==RiskLevel.HIGH?"店长→区域财务→风控":"店长";
   return new Assessment(r.requestNo(),decision,risk,route,List.copyOf(blockers),List.copyOf(actions));
  }
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  public record Request(@NotBlank String requestNo,@NotBlank String operatorId,@NotBlank String approverId,
   @NotNull @DecimalMin("0.01") BigDecimal refundAmount,@NotNull @DecimalMin("0.00") BigDecimal refundableAmount,
   boolean originalTransactionVerified,boolean originalTenderUsed,boolean alternateTenderApproved,
   boolean reasonAndEvidenceComplete,boolean managerApproved,boolean inventoryReversalPlanned,
   boolean memberBenefitReversalPlanned,boolean taxDocumentHandled,boolean idempotencyKeyRegistered,
   boolean offlineTransaction,boolean offlineReconciled,boolean fraudSignalsReviewed,boolean auditEvidenceArchived){}
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  public record Assessment(String requestNo,Decision decision,RiskLevel riskLevel,String approvalRoute,List<String> blockers,List<String> actions){}
- public enum Decision{REFUND,REVIEW,BLOCKED}public enum RiskLevel{NORMAL,HIGH}
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
+ public enum Decision{REFUND,REVIEW,BLOCKED}/**
+                                             * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+                                             */
+public enum RiskLevel{NORMAL,HIGH}
 }

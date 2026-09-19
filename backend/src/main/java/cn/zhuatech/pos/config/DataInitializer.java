@@ -7,16 +7,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Component
 public class DataInitializer implements CommandLineRunner {
     private final UserRepository users; private final ProductRepository products; private final StoreRepository stores;
     private final MemberRepository members; private final PosOrderRepository orders; private final PosOrderItemRepository items;
     private final CashierShiftRepository shifts; private final PasswordEncoder encoder;
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public DataInitializer(UserRepository users, ProductRepository products, StoreRepository stores, MemberRepository members,
                            PosOrderRepository orders, PosOrderItemRepository items, CashierShiftRepository shifts, PasswordEncoder encoder) {
         this.users = users; this.products = products; this.stores = stores; this.members = members;
         this.orders = orders; this.items = items; this.shifts = shifts; this.encoder = encoder;
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Override public void run(String... args) {
         if (users.count() > 0) return;
         users.save(new UserAccount("admin", encoder.encode("ZhuaTech@2026"), "系统管理员", UserAccount.Role.ADMIN, "全部门店"));
@@ -51,6 +60,9 @@ public class DataInitializer implements CommandLineRunner {
         saveOrder("POS202607281448392", "陈先生", PosOrder.PaymentMethod.BANK_CARD, new BigDecimal("68.00"), new BigDecimal("6.80"), 4, "烟熏鸡肉恰巴塔");
         saveOrder("POS202607281441508", null, PosOrder.PaymentMethod.CASH, new BigDecimal("15.00"), BigDecimal.ZERO, 1, "冷萃咖啡 280ml");
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private void saveOrder(String orderNo, String memberName, PosOrder.PaymentMethod payment, BigDecimal subtotal,
                            BigDecimal discount, int count, String productName) {
         BigDecimal payable = subtotal.subtract(discount);

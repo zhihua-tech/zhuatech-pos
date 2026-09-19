@@ -8,8 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class SettlementCloseGovernanceService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Assessment assess(Request request) {
         long providerVariance = request.providerSettledCents() - request.expectedDigitalCents();
         long cashVariance = request.actualCashCents() - request.expectedCashCents();
@@ -27,12 +33,21 @@ public class SettlementCloseGovernanceService {
                 List.copyOf(blockers), List.copyOf(actions));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String shiftNo, @Min(0) long expectedDigitalCents,
                           @Min(0) long providerSettledCents, @Min(0) long expectedCashCents,
                           @Min(0) long actualCashCents, @Min(0) long toleranceCents,
                           boolean refundsApproved, boolean chargebacksReviewed,
                           boolean shiftOwnerSignedOff) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Assessment(String shiftNo, long providerVarianceCents, long cashVarianceCents,
                              Decision decision, List<String> blockers, List<String> actions) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { CLOSE, REVIEW, HOLD }
 }

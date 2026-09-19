@@ -8,9 +8,15 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class PromotionMarginGuardServiceTests {
     private final PromotionMarginGuardService service = new PromotionMarginGuardService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void approvesPromotionWithHealthyMargin() {
         var result = service.evaluate(new PromotionMarginGuardService.Request(
@@ -22,6 +28,9 @@ class PromotionMarginGuardServiceTests {
         assertEquals(new BigDecimal("2300.00"), result.campaignMargin());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void blocksPromotionThatWouldCreateNegativeMargin() {
         var result = service.evaluate(new PromotionMarginGuardService.Request(

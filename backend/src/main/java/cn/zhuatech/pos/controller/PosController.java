@@ -9,24 +9,51 @@ import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/pos")
 public class PosController {
     private final PosService service; private final ProductRepository products; private final PosOrderRepository orders;
     private final StoreRepository stores; private final MemberRepository members; private final CashierShiftRepository shifts;
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public PosController(PosService service, ProductRepository products, PosOrderRepository orders,
                          StoreRepository stores, MemberRepository members, CashierShiftRepository shifts) {
         this.service = service; this.products = products; this.orders = orders; this.stores = stores; this.members = members; this.shifts = shifts;
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/products") public ApiResponse<List<Product>> products() { return ApiResponse.ok(products.findAllByOrderByCategoryAscNameAsc()); }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/orders") public ApiResponse<List<PosOrder>> orders() { return ApiResponse.ok(orders.findTop30ByOrderByCreatedAtDesc()); }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/checkout") @PreAuthorize("hasAnyRole('ADMIN','MANAGER','CASHIER')")
     public ApiResponse<CheckoutResult> checkout(@Valid @RequestBody CheckoutRequest request) {
         return ApiResponse.ok("收款成功", service.checkout(request));
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/dashboard") @PreAuthorize("hasAnyRole('ADMIN','MANAGER','AUDITOR')")
     public ApiResponse<DashboardView> dashboard() { return ApiResponse.ok(service.dashboard()); }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/stores") public ApiResponse<List<Store>> stores() { return ApiResponse.ok(stores.findAllByOrderByTodaySalesDesc()); }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/members") public ApiResponse<List<Member>> members() { return ApiResponse.ok(members.findAllByOrderByTotalSpendDesc()); }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/shifts") public ApiResponse<List<CashierShift>> shifts() { return ApiResponse.ok(shifts.findAll()); }
 }

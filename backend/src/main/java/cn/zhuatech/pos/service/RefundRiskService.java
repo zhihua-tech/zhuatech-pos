@@ -10,8 +10,14 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class RefundRiskService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result assess(Request request) {
         BigDecimal refundRate = request.salesCount() == 0 ? BigDecimal.ZERO
             : BigDecimal.valueOf(request.refundCount()).divide(BigDecimal.valueOf(request.salesCount()), 4, RoundingMode.HALF_UP);
@@ -33,11 +39,17 @@ public class RefundRiskService {
         return new Result(request.storeCode(), request.shiftNo(), refundRate, refundAmountRate, score, decision, reasons);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String storeCode, @NotBlank String shiftNo,
                           @Min(0) int salesCount, @Min(0) int refundCount,
                           @DecimalMin("0") BigDecimal refundAmount,
                           @DecimalMin("0") BigDecimal salesAmount,
                           @Min(0) int voidCount, @Min(0) int manualDiscountCount) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String storeCode, String shiftNo, BigDecimal refundRate, BigDecimal refundAmountRate,
                          int riskScore, String decision, List<String> reasons) {}
 }

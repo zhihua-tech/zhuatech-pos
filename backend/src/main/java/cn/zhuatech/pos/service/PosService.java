@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class PosService {
     private final ProductRepository products;
@@ -20,12 +23,18 @@ public class PosService {
     private final StoreRepository stores;
     private final MemberRepository members;
     private final CurrentUserService currentUser;
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public PosService(ProductRepository products, PosOrderRepository orders, PosOrderItemRepository orderItems,
                       StoreRepository stores, MemberRepository members, CurrentUserService currentUser) {
         this.products = products; this.orders = orders; this.orderItems = orderItems;
         this.stores = stores; this.members = members; this.currentUser = currentUser;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional(readOnly = true)
     public DashboardView dashboard() {
         BigDecimal sales = stores.findAll().stream().map(Store::getTodaySales).reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -50,6 +59,9 @@ public class PosService {
         return new DashboardView(summary, hourly, categories, alerts);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public CheckoutResult checkout(CheckoutRequest request) {
         PosOrder.PaymentMethod payment;
