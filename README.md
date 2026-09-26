@@ -202,3 +202,7 @@ Copyright © 2026 上海如静知华信息科技有限公司（Shanghai Rujing Z
 ## 班次退款风险复核
 
 `POST /api/pos/insights/refund-risk` 从退款笔数、退款金额、交易作废和人工折扣四类信号识别异常班次，返回 `PASS / VERIFY_SAMPLE / REVIEW_SHIFT` 决策与解释原因，便于店长进行抽样核验和交班复盘。
+
+## 钱箱差异治理
+
+新增 `POST /api/enterprise/pos/cash-drawer-variance`，计算班次应有与实盘现金差异，分级执行双人盲盘、收银员说明、设备日志保全和主管批准。详见 [钱箱差异治理](docs/ENTERPRISE_CASH_DRAWER_VARIANCE.md)。
