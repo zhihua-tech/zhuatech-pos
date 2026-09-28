@@ -1,5 +1,7 @@
 # ZhuaTech POS｜知华科技零售收银系统社区源码版
 
+[简体中文](README.md) | [English](README.en.md)
+
 ## 企业级增强：退款与作废治理
 
 新增原交易与金额核验、原路退款、职责分离、库存/权益/税务冲销、幂等、离线对账和欺诈审查，详见[退款与作废治理](docs/ENTERPRISE_REFUND_VOID_GOVERNANCE.md)。
