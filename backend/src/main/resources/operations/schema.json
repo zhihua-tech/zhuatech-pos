@@ -1,0 +1,88 @@
+{
+  "slug": "pos",
+  "title": "拆分支付余额与现金找零约束",
+  "fields": [
+    {
+      "key": "id",
+      "label": "记录编号",
+      "type": "ID"
+    },
+    {
+      "key": "dueAmount",
+      "label": "本单应收",
+      "type": "NUMBER",
+      "scale": 2,
+      "min": "0",
+      "max": "1000000000000"
+    },
+    {
+      "key": "cashTendered",
+      "label": "收到现金",
+      "type": "NUMBER",
+      "scale": 2,
+      "min": "0",
+      "max": "1000000000000"
+    },
+    {
+      "key": "cardPaid",
+      "label": "银行卡实付",
+      "type": "NUMBER",
+      "scale": 2,
+      "min": "0",
+      "max": "1000000000000"
+    },
+    {
+      "key": "walletPaid",
+      "label": "电子钱包实付",
+      "type": "NUMBER",
+      "scale": 2,
+      "min": "0",
+      "max": "1000000000000"
+    },
+    {
+      "key": "cashChange",
+      "label": "拟付现金找零",
+      "type": "NUMBER",
+      "scale": 2,
+      "min": "0",
+      "max": "1000000000000"
+    }
+  ],
+  "columns": [
+    {
+      "key": "totalTendered",
+      "label": "全部支付输入合计"
+    },
+    {
+      "key": "retainedTotal",
+      "label": "扣找零后实收"
+    },
+    {
+      "key": "shortPayment",
+      "label": "支付缺口"
+    },
+    {
+      "key": "overCollection",
+      "label": "超收金额"
+    }
+  ],
+  "description": "分别核对现金、银行卡和电子钱包的合计，限制找零只能从现金中支付，并提示不足或超收，不调用支付接口。",
+  "owner": "上海如静知华信息科技有限公司",
+  "website": "https://www.zhuatech.cn/",
+  "authorization": "商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。",
+  "version": 1,
+  "notes": "输入均须为已获授权的同口径数据。金额固定人民币元；比例为百分数。核算结果只用于复核，未审批、未写库、未发起外部调用，也未触发付款、签名、资料销毁或设备控制。建议不构成法律、安全、会计或碳核证结论。",
+  "sample": {
+    "asOf": "2026-10-23",
+    "records": [
+      {
+        "id": "ITEM-001",
+        "dueAmount": "100",
+        "cashTendered": "50",
+        "cardPaid": "40",
+        "walletPaid": "30",
+        "cashChange": "20"
+      }
+    ]
+  }
+}

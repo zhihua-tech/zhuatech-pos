@@ -1,0 +1,50 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "PASS",
+      "totalTendered": "#120",
+      "retainedTotal": "#100"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "cashChange": "19"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "overCollection": "#1"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "cashChange": "21"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "shortPayment": "#1"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "cashChange": "51"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "cashTendered": "0",
+      "cashChange": "0",
+      "cardPaid": "100",
+      "walletPaid": "0"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false
+  }
+]
