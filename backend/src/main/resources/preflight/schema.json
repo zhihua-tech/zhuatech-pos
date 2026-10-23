@@ -1,0 +1,88 @@
+{
+  "slug": "pos",
+  "title": "收银小票金额与找零预检",
+  "fields": [
+    {
+      "key": "receipt_no",
+      "label": "小票号",
+      "type": "ID",
+      "length": 200
+    },
+    {
+      "key": "gross",
+      "label": "商品原价",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2
+    },
+    {
+      "key": "discount",
+      "label": "优惠金额",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2
+    },
+    {
+      "key": "net",
+      "label": "应收金额",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2
+    },
+    {
+      "key": "received",
+      "label": "实收金额",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2
+    },
+    {
+      "key": "change",
+      "label": "找零金额",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2
+    }
+  ],
+  "unique": [
+    [
+      "receipt_no"
+    ]
+  ],
+  "rules": [
+    {
+      "op": "SUM_EQ",
+      "args": [
+        "discount",
+        "net",
+        "gross"
+      ],
+      "code": "RECEIPT_BALANCE",
+      "message": "优惠加应收必须等于原价",
+      "bad": {
+        "net": "89"
+      }
+    },
+    {
+      "op": "SUM_EQ",
+      "args": [
+        "net",
+        "change",
+        "received"
+      ],
+      "code": "CHANGE_BALANCE",
+      "message": "应收加找零必须等于实收",
+      "bad": {
+        "change": "9"
+      }
+    }
+  ],
+  "sampleCsv": "receipt_no,gross,discount,net,received,change\nPOS-001,100,10,90,100,10\n",
+  "limits": {
+    "rows": 500,
+    "bytes": 262144,
+    "columns": 32,
+    "cellCharacters": 4000
+  },
+  "scope": "Read-only batch validation; no persistence, reference-master lookup or full production certification."
+}
